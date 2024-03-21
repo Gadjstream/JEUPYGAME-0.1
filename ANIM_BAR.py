@@ -21,7 +21,7 @@ class SpawnBar:
         # Couleur de la barre
         self.color = (198, 152, 197)
 
-    def anim_spawn(self, screen, cd):
+    def update(self, screen, cd):
 
         # Gère l'animation
 
@@ -43,3 +43,33 @@ class SpawnBar:
             print("reset anim")
 
 
+class HPBar:
+
+    # Gère la barre de vie du hero
+
+    def __init__(self, hero):
+
+        # Définition du hero
+        self.hero = hero
+
+        # Dimansion de la barre
+        self.haut = 100
+        self.large = 15
+
+        # Couleur de la barre
+        self.color = (127, 184, 128)
+        self.color_bg = (15, 15, 15)
+
+        # Switch background
+        self.bg = False
+
+    def update(self, screen):
+
+        # Dessine le background 1 seule fois
+        if not self.bg:
+            pygame.draw.rect(screen, self.color_bg, (10 - 1, 10, self.large + 2, self.haut))
+        else:
+            pass
+
+        # Dessine la barre d'hp
+        pygame.draw.rect(screen, self.color, (10, 10 + self.hero.hp_missing, self.large, self.hero.hp))

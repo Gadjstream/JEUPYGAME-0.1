@@ -6,6 +6,8 @@ import math
 mais on n'a pas accès à l'objet "jeu" initialisé dans le "main" """
 from FONCTIONS import Fonctions
 
+from ANIM_BAR import HPBar
+
 
 class Hero(pygame.sprite.Sprite):
 
@@ -54,9 +56,13 @@ class Hero(pygame.sprite.Sprite):
         self.reposition = False
         self.tire = True
 
+        # Spawn de la barre de vie
+        self.hp_bar = HPBar(self)
+
         # Stats du héro
         self.hp = 100
         self.hp_max = 100
+        self.hp_missing = 0
         self.speed = 2
         self.range = 120
         self.attack_speed = 1000

@@ -53,6 +53,7 @@ class Fonctions():
         if self.hero.hero_alive:
             screen.blit(self.hero.image, self.hero.rect)
             self.hero.move()
+            self.hero.hp_bar.update(screen)
 
         # Si le hero meurt, il disparait
         elif not self.hero.hero_alive:
@@ -86,7 +87,7 @@ class Fonctions():
             pygame.time.set_timer(CD, self.cd_spawn_time)
 
         # Animation de la barre de spawn
-        self.spawn_bar.anim_spawn(self.screen, self.cd_spawn_time)
+        self.spawn_bar.update(self.screen, self.cd_spawn_time)
 
         # gestion des événements
         for events in pygame.event.get():
@@ -161,6 +162,9 @@ class Fonctions():
         entity.hp -= n
         print("le hero a perdu " + str(n) + " hp")
         print("hp :", entity.hp)
+
+        # Actualisation des hp manquants
+        self.hero.hp_missing = self.hero.hp_max - self.hero.hp
 
         # Si les pv du héro sont à O, il meurt
         if entity.hp <= 0:
